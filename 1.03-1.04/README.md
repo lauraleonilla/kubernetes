@@ -1,4 +1,4 @@
-### Assignment 1.03
+### Assignment 1.03-1.04
 
 The docker image based on the project can be found in https://hub.docker.com/repository/docker/lauraleonilla/string-generator
 You can deploy it with kubernetes by running the following inside the folder:
