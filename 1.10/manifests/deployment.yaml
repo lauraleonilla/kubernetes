@@ -1,17 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: string-generator-server
+  name: string-writer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: string-generator-server
+      app: images
   template:
     metadata:
       labels:
-        app: string-generator-server
+        app: images
     spec:
+      volumes:
+        - name: string-file
+          emptyDir: {}
       containers:
-        - name: string-generator-server
-          image: lauraleonilla/string-generator-server:latest
+        - name: string-reader
+          image: lauraleonilla/filereader:latest
+          volumeMounts:
+          - name: string-file
+            mountPath: ../files
+        - name: string-writer
+          image: lauraleonilla/filewriter:latest
+          volumeMounts:
+          - name: string-file
+            mountPath: ../files
