@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: string-writer
+  name: string-writer-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: images
+      app: string-writer-app
   template:
     metadata:
       labels:
-        app: images
+        app: string-writer-app
     spec:
       volumes:
         - name: string-file

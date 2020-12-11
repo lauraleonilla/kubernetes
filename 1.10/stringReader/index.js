@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const port = 3002
-const fs = require('fs') 
+const fs = require('fs')
 
 const dirPath = path.join(__dirname, '../files');
 const filePath = path.join(dirPath, 'timeStamps.txt')
@@ -10,7 +10,7 @@ const filePath = path.join(dirPath, 'timeStamps.txt')
 let responseData = 'This will be data'
 
 const readTimeStampFile = async () => {
-    await fs.readFile(filePath, (error, data) => {
+    await fs.readFile(filePath, 'utf8', (error, data) => {
         if (error) {
           console.error('Error reading file', error)
           return
@@ -21,7 +21,7 @@ const readTimeStampFile = async () => {
 }
 
 app.get('/', (req, res) => {
-  res.send(responseData);
+  res.json(responseData);
 })
 
 app.listen(port, () => {
