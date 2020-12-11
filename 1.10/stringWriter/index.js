@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 const fs = require('fs') 
+const path = require('path');
+const dirPath = path.join(__dirname, '../files');
 
 const stringGenerator = () => {
   const length = 10
@@ -14,14 +16,25 @@ const stringGenerator = () => {
   return result
 }
 
+const fileAlreadyExists = async () => new Promise(res => {
+  fs.stat(dirPath, (err, stats) => {
+    if (err || !stats) return res(false)
+    return res(true)
+  })
+})
+
 const string = stringGenerator()
 let response = `${new Date()}: ${string}`
 
-const getStringWithDate = () => {
+const getStringWithDate = async () => {
+  const fileExists = await fileAlreadyExists()
+  if (!fileExists) {
+    await new Promise(res => fs.mkdir(dirPath, (err) => res()))
+  }
   setInterval(() => {
     timeStamp = new Date()
     response = `${timeStamp}: ${string}\n`
-    fs.appendFile('timeStamps.txt', response, (error) => {
+    fs.appendFile(`${dirPath}/timeStamps.txt`, response, (error) => {
       if (error) {
         console.log('Error when writing file', error)
         return
