@@ -4,7 +4,7 @@ const app = express()
 const port = 3002
 const fs = require('fs')
 
-const dirPath = path.join(__dirname, '../files');
+const dirPath = path.join('/', 'usr', 'src', 'app', 'files')
 const filePath = path.join(dirPath, 'timeStamps.txt')
 
 let responseData = 'This will be data'
@@ -21,6 +21,7 @@ const readTimeStampFile = async () => {
 }
 
 app.get('/', (req, res) => {
+  readTimeStampFile()
   res.json(responseData);
 })
 

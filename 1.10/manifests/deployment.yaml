@@ -16,13 +16,13 @@ spec:
         - name: string-file
           emptyDir: {}
       containers:
-        - name: string-reader
-          image: lauraleonilla/filereader:latest
-          volumeMounts:
-          - name: string-file
-            mountPath: ../files
         - name: string-writer
           image: lauraleonilla/filewriter:latest
           volumeMounts:
           - name: string-file
-            mountPath: ../files
+            mountPath: /usr/src/app/files
+        - name: string-reader
+          image: lauraleonilla/filereader:latest
+          volumeMounts:
+          - name: string-file
+            mountPath: /usr/src/app/files

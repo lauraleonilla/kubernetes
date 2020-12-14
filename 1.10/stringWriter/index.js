@@ -3,7 +3,7 @@ const app = express()
 const port = 3000
 const fs = require('fs') 
 const path = require('path');
-const dirPath = path.join(__dirname, '../files');
+const dirPath = path.join('/', 'usr', 'src', 'app', 'files')
 
 const stringGenerator = () => {
   const length = 10
@@ -44,10 +44,6 @@ const getStringWithDate = async () => {
   }, 5000)
   return response
 }
-
-app.get('/', (req, res) => {
-  res.send(response);
-})
 
 app.listen(port, () => {
   getStringWithDate()
