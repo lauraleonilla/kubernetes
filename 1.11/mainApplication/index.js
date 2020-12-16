@@ -22,10 +22,6 @@ const string = stringGenerator()
 let response = `${new Date()}: ${string}`
 
 const getStringWithDate = async () => {
-  const fileExists = await fileAlreadyExists()
-  if (!fileExists) {
-    await new Promise(res => fs.mkdir(dirPath, (err) => res()))
-  }
   setInterval(() => {
     timeStamp = new Date()
     response = `${timeStamp}: ${string}\n`
@@ -33,27 +29,25 @@ const getStringWithDate = async () => {
   return response
 }
 
-const readPongFile = async () => {
-  let responseData = null
-
-  await fs.readFile(filePath, 'utf8', (error, data) => {
-      if (error) {
-        console.error('Error reading file', error)
-        return
-      }
-      responseData = data
-      console.log(data)
+const readPongFile = async () => new Promise(res => {
+  fs.readFile(filePath, (err, buffer) => {
+    if (err) return console.log('FAILED TO READ FILE', '----------------', err)
+    res(buffer)
   })
-  return responseData
+})
+
+
+const getStringWPongs = async () => {
+  const string = await getStringWithDate()
+  const pongs = await readPongFile()
+  return `${string} Ping / Pongs: ${pongs}`
 }
 
-const getStringWPongs = () => {
-  const string = getStringWithDate()
-  const pongs = readPongFile()
-  return `${string} \n Ping / Pongs: ${pongs}`
-}
+app.get('/', async (req, res) => {
+  const data = await getStringWPongs()
+  res.send(data);
+})
 
 app.listen(port, () => {
-  getStringWPongs()
   console.log(`Server started in port ${port}`)
 })

@@ -11,4 +11,4 @@ The ingress is shared with 1.07. You can use the services and the ingress to acc
 6. You'll then have the two applications deployed with the services running. You can start the shared ingress by running 
 kubectl apply -f manifests/ingress.yaml inside this folder.
 
-The main application will be available at http://localhost:8081 and the pingpong allication at http://localhost:8081/pingpong
+The main application will be available at http://localhost:8081 and the pingpong application at http://localhost:8081/pingpong

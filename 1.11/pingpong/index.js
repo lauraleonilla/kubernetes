@@ -21,13 +21,12 @@ app.get('/pingpong', (req, res) => {
       console.log('Error when writing file', error)
       return
     }
-      console.log(response)
   })
   res.send(`Pong ${counter}`);
   counter = counter += 1
 })
 
-app.listen(port, () => {
+app.listen(port, async () => {
   const fileExists = await fileAlreadyExists()
   if (!fileExists) {
     await new Promise(res => fs.mkdir(dirPath, (err) => res()))
