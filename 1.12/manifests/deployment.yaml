@@ -23,7 +23,7 @@ spec:
           - name: shared-pingpong
             mountPath: /usr/src/app/files
         - name: string-reader
-          image: lauraleonilla/mainapplicationreadpong:latest
+          image: lauraleonilla/mainapplicationwimage:latest
           volumeMounts:
           - name: shared-pingpong
             mountPath: /usr/src/app/files

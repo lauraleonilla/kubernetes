@@ -16,7 +16,7 @@ const fileAlreadyExists = async () => new Promise(res => {
 })
 
 app.get('/pingpong', (req, res) => {
-  fs.writeFile(`../pongs.txt`, counter, (error) => {
+  fs.writeFile(`${dirPath}/pongs.txt`, counter, (error) => {
     if (error) {
       console.log('Error when writing file', error)
       return

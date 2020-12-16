@@ -1,4 +1,4 @@
-### Assignment 1.11
+### Assignment 1.12
 
 You can use the service on port :8081 with following:
 
@@ -11,4 +11,4 @@ You can use the service on port :8081 with following:
 7. kubectl apply -f manifests/service.yaml 
 8. kubectl apply -f manifests/ingress.yaml 
 
-/pingpong will increase the number of pongs in the file / will display the ponds with timestamp
+/pingpong will increase the number of pongs in the file / will display the pongs with timestamp and an image.
