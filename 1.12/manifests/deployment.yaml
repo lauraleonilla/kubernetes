@@ -1,29 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: string-writer-dep
+  name: project-app-dep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: string-writer-app
+      app: project-app
   template:
     metadata:
       labels:
-        app: string-writer-app
+        app: project-app
     spec:
       volumes:
-        - name: shared-pingpong
+        - name: shared-project
           persistentVolumeClaim:
-            claimName: pingpong-claim
+            claimName: project-claim
       containers:
-        - name: pingpong
-          image: lauraleonilla/pingpongwriter:latest
+        - name: project-app
+          image: lauraleonilla/projectappwimage:latest
           volumeMounts:
-          - name: shared-pingpong
-            mountPath: /usr/src/app/files
-        - name: string-reader
-          image: lauraleonilla/mainapplicationwimage:latest
-          volumeMounts:
-          - name: shared-pingpong
+          - name: shared-project
             mountPath: /usr/src/app/files

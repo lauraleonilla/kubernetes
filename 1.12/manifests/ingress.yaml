@@ -1,16 +1,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: string-writer-ingress
+  name: project-ingress
 spec:
   rules:
   - http:
       paths:
       - path: /
         backend:
-          serviceName: string-writer-srv
+          serviceName: project-srv
           servicePort: 2345
-      - path: /pingpong
-        backend:
-          serviceName: string-writer-srv
-          servicePort: 2346
