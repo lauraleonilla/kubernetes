@@ -5,8 +5,12 @@ const port = 3001
 let counter = 0
 
 app.get('/pingpong', (req, res) => {
-  res.send(`${counter}`);
+  res.send(`Pongs: ${counter}`);
   counter = counter += 1
+})
+
+app.get('/getpongs', (req, res) => {
+  res.send(`${counter}`);
 })
 
 app.listen(port, async () => {

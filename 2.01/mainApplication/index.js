@@ -27,7 +27,7 @@ const getStringWithDate = async () => {
 
 const getStringWPongs = async () => {
   const string = await getStringWithDate()
-  const pongs = await axios.get('http://localhost:3001/pingpong/')
+  const pongs = await axios.get('http://localhost:3001/getpongs/')
   return `${string} Ping / Pongs: ${pongs.data}`
 }
 
